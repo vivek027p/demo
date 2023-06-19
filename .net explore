@@ -1,0 +1,19 @@
+VB .net and c# difference
+
+VB.NET (Visual Basic .NET) and C# (C Sharp) are both programming languages that are part of the .NET framework developed by Microsoft. While they share some similarities, there are several differences between VB.NET and C#:
+
+Syntax: One of the most noticeable differences is the syntax. VB.NET has a more verbose and English-like syntax, whereas C# has a syntax similar to C and C++. For example, in VB.NET, you use the "End If" statement to close an if block, whereas in C#, you use a closing brace "}." Similarly, in VB.NET, you use the "Then" keyword after the condition in an if statement, whereas C# omits it.
+
+Case sensitivity: C# is case-sensitive, meaning that variables and identifiers must be written with consistent casing. VB.NET, on the other hand, is case-insensitive by default, although you can enable case sensitivity with the "Option Compare Binary" statement.
+
+Default values: In VB.NET, variables are initialized to their default values automatically, whereas in C#, you need to explicitly initialize variables before using them.
+
+Event handling: VB.NET uses the "Handles" keyword to handle events, making event handling more explicit and separate from the code. C# uses delegates and events to handle events, providing more flexibility but also requiring a more explicit declaration of event handlers.
+
+Optional parameters: VB.NET supports optional parameters, allowing you to define parameters with default values. C# introduced optional parameters in later versions, but they were not available in earlier versions.
+
+LINQ syntax: Language Integrated Query (LINQ) is a feature in .NET that allows querying data from various sources. The syntax for writing LINQ queries differs slightly between VB.NET and C#. In VB.NET, you use "From" and "Select" clauses, whereas in C#, you use "from" and "select" keywords.
+
+Adoption and popularity: Historically, C# has been more widely adopted and popular than VB.NET. Many Microsoft tools and frameworks are more C#-focused, and the majority of new language features and updates are typically introduced in C# first.
+
+While there are differences between VB.NET and C#, they are both fully supported by the .NET framework, and developers can choose the language that suits their preferences and project requirements.
