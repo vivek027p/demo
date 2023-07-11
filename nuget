@@ -52,3 +52,15 @@ steps:
     restoreSolution: '**/*.sln'
     feedsToUse: 'config'
     nugetConfigPath: '$(Build.SourcesDirectory)/NuGet.config'
+
+
+--------------------------------------------------
+
+steps:
+- script: |
+    echo "trustAllCert=true" >> "$(Build.SourcesDirectory)/NuGet.Config"
+  displayName: 'Disable certificate validation in NuGet.Config'
+
+- script: |
+    "$(Build.SourcesDirectory)\nuget.exe" restore "$(Build.SourcesDirectory)/YourSolution.sln" -NonInteractive -ConfigFile "$(Build.SourcesDirectory)/NuGet.Config"
+  displayName: 'Restore NuGet packages'
