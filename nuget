@@ -64,3 +64,8 @@ steps:
 - script: |
     "$(Build.SourcesDirectory)\nuget.exe" restore "$(Build.SourcesDirectory)/YourSolution.sln" -NonInteractive -ConfigFile "$(Build.SourcesDirectory)/NuGet.Config"
   displayName: 'Restore NuGet packages'
+
+-------------------------------------------------------------
+- script: |
+    echo "DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER=false" >> $(Agent.BuildDirectory)/.env
+  displayName: 'Set DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER environment variable'
