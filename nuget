@@ -71,3 +71,12 @@ steps:
 - script: |
     echo "DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER=false" >> $(Agent.BuildDirectory)/.env
   displayName: 'Set DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER environment variable'
+
+------------------------------------------------------------------------
+- script: |
+    echo '<?xml version="1.0" encoding="utf-8"?><configuration><config><add key="globalPackagesFolder" value=".\packages" /></config><packageSources><add key="NuGet.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" /></packageSources></configuration>' > $(Build.SourcesDirectory)/NuGet.Config
+  displayName: 'Create NuGet.Config file'
+
+- script: |
+    dotnet restore "$(Build.SourcesDirectory)/YourSolution.sln" --configfile "$(Build.SourcesDirectory)/NuGet.Config" --no-restore
+  displayName: 'Restore NuGet packages'
