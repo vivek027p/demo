@@ -28,9 +28,9 @@ steps:
       [Environment]::SetEnvironmentVariable('PATH', $newPath, 'Process')
 
 - script: |
-    nuget sources add -name "NuGet.org" -source "https://api.nuget.org/v3/index.json" -configfile "$(Build.SourcesDirectory)/NuGet.config"
+    $(nugetPath) sources add -name "NuGet.org" -source "https://api.nuget.org/v3/index.json" -configfile "$(Build.SourcesDirectory)/NuGet.config"
   displayName: 'Add NuGet.org as package source'
 
 - script: |
-    nuget restore "$(Build.SourcesDirectory)/YourSolution.sln" -NonInteractive -IgnoreSSL
+    $(nugetPath) restore "$(Build.SourcesDirectory)/YourSolution.sln" -NonInteractive -IgnoreSSL
   displayName: 'Restore NuGet packages'
