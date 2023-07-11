@@ -13,29 +13,24 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      # Create destination folder
+      $nugetFolderPath = 'C:\nuget'
+      New-Item -ItemType Directory -Force -Path $nugetFolderPath
+
       # Download NuGet.exe
       $nugetUrl = 'https://dist.nuget.org/win-x86-commandline/latest/nuget.exe'
-      $nugetPath = 'C:\nuget\nuget.exe'
-      Invoke-WebRequest -Uri $nugetUrl -OutFile $nugetPath
+      $nugetPath = Join-Path -Path $nugetFolderPath -ChildPath 'nuget.exe'
+      Invoke-WebRequest -Uri $nugetUrl -OutFile $nugetPath -UseBasicParsing
 
-      # Add NuGet.exe to system PATH
-      $envPath = [Environment]::GetEnvironmentVariable('PATH', 'Machine')
-      $newPath = "$envPath;C:\nuget"
-      [Environment]::SetEnvironmentVariable('PATH', $newPath, 'Machine')
+      # Add NuGet.exe to PATH for the current process
+      $envPath = [Environment]::GetEnvironmentVariable('PATH', 'Process')
+      $newPath = "$envPath;$nugetFolderPath"
+      [Environment]::SetEnvironmentVariable('PATH', $newPath, 'Process')
 
-      # Verify installation
-      Write-Host 'NuGet installed successfully.'
+- script: |
+    nuget sources add -name "NuGet.org" -source "https://api.nuget.org/v3/index.json" -configfile "$(Build.SourcesDirectory)/NuGet.config"
+  displayName: 'Add NuGet.org as package source'
 
-
-- task: NuGetToolInstaller@1
-  displayName: 'Use NuGet'
-  inputs:
-    versionSpec: '>=5.0.0'
-
-- task: NuGetCommand@2
+- script: |
+    nuget restore "$(Build.SourcesDirectory)/YourSolution.sln" -NonInteractive -IgnoreSSL
   displayName: 'Restore NuGet packages'
-  inputs:
-    command: 'restore'
-    restoreSolution: '**/*.sln'
-    feedsToUse: 'config'
-    nugetConfigPath: '$(Build.SourcesDirectory)/NuGet.config'
