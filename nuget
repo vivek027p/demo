@@ -73,8 +73,8 @@ steps:
   displayName: 'Set DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER environment variable'
 
 ------------------------------------------------------------------------
-- script: |
-    echo '<?xml version="1.0" encoding="utf-8"?><configuration><config><add key="globalPackagesFolder" value=".\packages" /></config><packageSources><add key="NuGet.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" /></packageSources></configuration>' > $(Build.SourcesDirectory)/NuGet.Config
+- powershell: |
+    Set-Content -Path "$(Build.SourcesDirectory)/NuGet.Config" -Value '<?xml version="1.0" encoding="utf-8"?><configuration><config><add key="globalPackagesFolder" value=".\packages" /></config><packageSources><add key="NuGet.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" /></packageSources></configuration>'
   displayName: 'Create NuGet.Config file'
 
 - script: |
