@@ -25,3 +25,17 @@ steps:
 
       # Verify installation
       Write-Host 'NuGet installed successfully.'
+
+
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet'
+  inputs:
+    versionSpec: '>=5.0.0'
+
+- task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'config'
+    nugetConfigPath: '$(Build.SourcesDirectory)/NuGet.config'
