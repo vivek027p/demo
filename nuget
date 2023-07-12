@@ -80,3 +80,10 @@ steps:
 - script: |
     dotnet restore "$(Build.SourcesDirectory)/YourSolution.sln" --configfile "$(Build.SourcesDirectory)/NuGet.Config" --no-restore
   displayName: 'Restore NuGet packages'
+----------------------------------------------------------
+- task: UseDotNet@2
+  displayName: 'Use .NET Framework 4.0'
+  inputs:
+    packageType: 'sdk'
+    version: '4.0.30319'
+    addToPath: true
