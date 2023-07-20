@@ -114,9 +114,8 @@ steps:
   displayName: 'Install JFrog CLI'
   inputs:
     script: |
-      # Download and install JFrog CLI
-      curl -fL https://getcli.jfrog.io | sh
-
+      Invoke-WebRequest -Uri https://getcli.jfrog.io -OutFile jfrog_cli_installer.ps1
+      ./jfrog_cli_installer.ps1
 - task: CmdLine@2
   displayName: 'Configure JFrog CLI'
   inputs:
