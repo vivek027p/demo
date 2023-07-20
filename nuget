@@ -95,3 +95,8 @@ steps:
     buildName: 'MyBuildName'
     buildNumber: '$(Build.BuildNumber)'
     collectBuildInfo: true
+
+- powershell: |
+    # Set the environment variable for the current session
+    $env:NODE_TLS_REJECT_UNAUTHORIZED = '0'
+  displayName: 'Set NODE_TLS_REJECT_UNAUTHORIZED'
