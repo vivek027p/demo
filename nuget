@@ -108,3 +108,27 @@ steps:
     script: |
       # Set the working directory to \agent\_work\21\s
       cd $(Agent.BuildDirectory)\..\21\s
+-----------------------------------------------------------
+steps:
+- task: CmdLine@2
+  displayName: 'Install JFrog CLI'
+  inputs:
+    script: |
+      # Download and install JFrog CLI
+      curl -fL https://getcli.jfrog.io | sh
+
+- task: CmdLine@2
+  displayName: 'Configure JFrog CLI'
+  inputs:
+    script: |
+      # Configure JFrog CLI with Artifactory server details and authentication
+      jfrog rt c --url "https://your-artifactory-server-url" --user "your-username" --password "your-password" --interactive=false
+
+- task: CmdLine@2
+  displayName: 'Publish Artifacts to JFrog Artifactory'
+  inputs:
+    script: |
+      # Build your project or generate the artifacts (use appropriate build commands)
+
+      # Publish build artifacts to Artifactory
+      jfrog rt u "<path-to-local-artifacts>/*" "generic-local/<target-artifactory-path>/" --recursive=true
