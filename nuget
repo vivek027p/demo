@@ -100,3 +100,11 @@ steps:
     # Set the environment variable for the current session
     $env:NODE_TLS_REJECT_UNAUTHORIZED = '0'
   displayName: 'Set NODE_TLS_REJECT_UNAUTHORIZED'
+
+- task: PowerShell@2
+  displayName: 'Set Working Directory'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Set the working directory to \agent\_work\21\s
+      cd $(Agent.BuildDirectory)\..\21\s
