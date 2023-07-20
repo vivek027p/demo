@@ -87,3 +87,11 @@ steps:
     packageType: 'sdk'
     version: '4.0.30319'
     addToPath: true
+------------------------------------
+- task: JFrogArtifactory@1
+  displayName: 'Publish Build Artifacts'
+  inputs:
+    serverId: 'YourArtifactoryServiceConnection' # Replace with your JFrog Artifactory service connection name
+    buildName: 'MyBuildName'
+    buildNumber: '$(Build.BuildNumber)'
+    collectBuildInfo: true
