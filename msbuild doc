@@ -1,0 +1,10 @@
+Benefits of using Templates:
+1.	Reusability: Create modular components shared across projects.
+2.	Standardization: Establish consistent workflows and configurations.
+3.	Simplified Maintenance: Make changes centrally, reflected in all pipelines.
+4.	Parameterization: Customize template behavior for different projects.
+5.	Fast Onboarding: Accelerate setup for new projects with pre-defined templates.
+6.	Testing and Validation: Ensure reliability through thorough testing.
+
+Introduction to MSbuild Template:
+This template includes stages like, NuGet package restore to download required packages, MSBuild to compile code and generate artifacts, and publishing artifacts to an Artifactory repository. By using this template, you can ensure consistency, standardization, and reusability across projects, simplify maintenance, and seamlessly integrate with CI/CD pipelines for efficient automated builds and deployments. Parameters can be added for customization, and versioning allows tracking changes over time. Overall, the MSBuild template streamlines the entire build process and enhances productivity in software development.
